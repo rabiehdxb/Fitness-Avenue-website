@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Fitness Avenue — a strength and conditioning gym in Barsha Heights, Dubai. Flexible memberships, free parking for members.">
+<link rel="icon" type="image/png" href="assets/fa-mark.png">
+<title>Fitness Avenue</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#0b0b0c;
+    --ink-2:#141415;
+    --paper:#edeae2;
+    --ash:#948f86;
+    --accent:#f2c118;
+    --accent-deep:#b9910a;
+    --line:rgba(237,234,226,0.14);
+    --line-strong:rgba(237,234,226,0.28);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html{background:var(--ink);}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Work Sans', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;}
+  h1,h2,h3{margin:0; text-wrap:balance;}
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--accent); color:var(--ink);}
+
+  .display{font-family:'Anton', 'Arial Narrow', sans-serif; font-weight:400; letter-spacing:.01em; line-height:.92; text-transform:uppercase;}
+  .label{font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:.14em; font-size:.72rem; font-weight:500;}
+  .accent{color:var(--accent);}
+  .tabnum{font-variant-numeric:tabular-nums;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding-inline:clamp(20px,4vw,48px);}
+  section{padding-block:clamp(60px,10vw,120px); border-bottom:1px solid var(--line);}
+
+  /* MASK REVEAL LINES */
+  .mask{overflow:hidden; display:block;}
+  .mask-inner{display:block; will-change:transform;}
+
+  /* PRELOADER */
+  #preloader{position:fixed; inset:0; background:var(--ink); z-index:999; display:flex; align-items:center; justify-content:center;}
+  .pre-inner{display:flex; flex-direction:column; align-items:center; gap:16px;}
+  .pre-logo{width:auto; height:64px; display:block;}
+  .pre-count{font-family:'Anton',sans-serif; font-size:clamp(2rem,6vw,3rem); color:var(--paper); font-variant-numeric:tabular-nums;}
+  .pre-count::after{content:'%'; color:var(--accent); margin-left:2px;}
+  .pre-label{color:var(--ash);}
+
+  /* NAV */
+  header{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+    background:rgba(11,11,12,0);
+    border-bottom:1px solid transparent;
+    transition:background .3s ease, border-color .3s ease;
+  }
+  header.solid{background:rgba(11,11,12,.92); backdrop-filter:blur(6px); border-color:var(--line);}
+  .navbar{display:flex; align-items:center; justify-content:space-between; padding-block:16px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:.06em; font-size:1rem;}
+  .brand-logo{height:34px; width:auto; display:block; flex:none;}
+  .brand span{color:var(--accent);}
+  nav.links{display:flex; gap:32px;}
+  nav.links a{font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.12em; color:var(--ash); transition:color .2s;}
+  nav.links a:hover{color:var(--paper);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; justify-content:center;
+    font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.1em; font-weight:600;
+    padding:13px 22px; border:1px solid var(--paper); cursor:pointer; white-space:nowrap;
+    transition:background .2s ease, color .2s ease, border-color .2s ease, box-shadow .3s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-fill{background:var(--accent); border-color:var(--accent); color:var(--ink); box-shadow:0 0 0 0 rgba(242,193,24,.5);}
+  .btn-fill:hover{background:var(--paper); border-color:var(--paper); box-shadow:0 0 26px 2px rgba(242,193,24,.35);}
+  .btn-line{border-color:var(--line-strong); color:var(--paper);}
+  .btn-line:hover{border-color:var(--paper);}
+  .menu-btn{display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:6px;}
+  .menu-btn span{width:22px; height:2px; background:var(--paper);}
+
+  /* HERO */
+  .hero{
+    position:relative; padding-top:clamp(70px,14vw,140px); padding-bottom:clamp(60px,10vw,110px);
+    overflow:hidden;
+  }
+  /* Hero training montage (graded + cut in ffmpeg; muted, looping) */
+  .hero-video-bg{
+    position:absolute; inset:0; z-index:0; overflow:hidden;
+    background:var(--ink);
+  }
+  .hero-video-bg video{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:60% 40%;
+    opacity:.85; filter:brightness(1.15) contrast(1.05);
+  }
+  .hero-scrim{
+    position:absolute; inset:0; z-index:1;
+    background-image:
+      linear-gradient(90deg, rgba(11,11,12,.9) 0%, rgba(11,11,12,.62) 45%, rgba(11,11,12,.25) 100%),
+      linear-gradient(180deg, rgba(11,11,12,0) 55%, rgba(11,11,12,.9) 100%),
+      repeating-linear-gradient(115deg, rgba(242,193,24,.05) 0 2px, transparent 2px 34px);
+  }
+  @media (max-width:860px){
+    .hero-scrim{
+      background-image:
+        linear-gradient(180deg, rgba(11,11,12,.45) 0%, rgba(11,11,12,.65) 50%, rgba(11,11,12,.95) 100%);
+    }
+  }
+  .hero-ghost{
+    position:absolute; right:clamp(-40px,4vw,40px); top:clamp(40px,8vw,80px);
+    font-size:clamp(6rem,18vw,14rem); color:transparent; -webkit-text-stroke:1px var(--line-strong);
+    pointer-events:none; user-select:none; z-index:2;
+  }
+  .eyebrow{display:flex; align-items:center; gap:8px; color:var(--accent); margin-bottom:22px; position:relative; z-index:2;}
+  .eyebrow svg{width:13px; height:13px;}
+  .hero h1{font-size:clamp(3.4rem,10vw,7.2rem); position:relative; z-index:2;}
+  .hero h1 .line2{color:var(--accent); font-style:italic; transform:skewX(-6deg);}
+  .hero-sub{max-width:480px; margin-top:26px; color:#c9c5bb; font-size:1.05rem; line-height:1.6; position:relative; z-index:2;}
+  .hero-ctas{display:flex; gap:14px; margin-top:38px; flex-wrap:wrap; position:relative; z-index:2;}
+
+  /* MARQUEE */
+  .marquee{padding-block:22px; overflow:hidden; white-space:nowrap; border-bottom:1px solid var(--line);}
+  .marquee-track{display:inline-flex; gap:2.4rem; animation:scroll 26s linear infinite;}
+  .marquee span{font-family:'Anton',sans-serif; font-size:clamp(1.6rem,4vw,2.6rem); color:transparent; -webkit-text-stroke:1px var(--line-strong); text-transform:uppercase; display:inline-flex; align-items:center; gap:2.4rem;}
+  .marquee svg{width:14px; height:14px; -webkit-text-stroke:0; fill:var(--accent); flex:none;}
+  @keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  /* MANIFESTO */
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,6vw,90px); align-items:start;}
+  .manifesto-copy p{color:#c9c5bb; margin-top:20px; line-height:1.7; max-width:38ch;}
+  .manifesto-items{display:flex; flex-direction:column;}
+  .m-item{display:grid; grid-template-columns:56px 1fr; gap:22px; padding-block:26px; border-top:1px solid var(--line);}
+  .m-item:last-child{border-bottom:1px solid var(--line);}
+  .m-item .num{font-family:'Oswald',sans-serif; color:var(--accent); font-size:.9rem; padding-top:4px;}
+  .m-item h3{font-family:'Anton',sans-serif; text-transform:uppercase; font-size:1.5rem; margin-bottom:10px;}
+  .m-item p{color:var(--ash); line-height:1.65; max-width:46ch;}
+
+  /* STATS */
+  .stats{padding-block:0; border-bottom:1px solid var(--line);}
+  .stats-row{display:grid; grid-template-columns:repeat(4,1fr);}
+  .stat{padding:34px 20px; border-left:1px solid var(--line); text-align:left;}
+  .stat:first-child{border-left:0;}
+  .stat b{display:block; font-family:'Anton',sans-serif; font-size:clamp(1.8rem,4vw,2.6rem); color:var(--accent);}
+  .stat span{color:var(--ash); font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;}
+
+  /* TRAINING FLOOR */
+  .floor-head{display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-bottom:48px;}
+  .floor-note{color:var(--ash); font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; text-align:right;}
+  .floor-grid{
+    display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:180px; gap:2px; background:var(--line);
+  }
+  .floor-tile{
+    position:relative; overflow:hidden; background:var(--ink-2);
+  }
+  .floor-tile.t1{grid-column:1 / 5; grid-row:1 / 3;}
+  .floor-tile.t2{grid-column:5 / 7; grid-row:1 / 2;}
+  .floor-tile.t3{grid-column:5 / 7; grid-row:2 / 3;}
+  .floor-tile.t4{grid-column:1 / 3; grid-row:3 / 5;}
+  .floor-tile.t5{grid-column:3 / 7; grid-row:3 / 5;}
+  .floor-tile.t4 img{object-position:50% 22%;}
+  .floor-tile img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:grayscale(1) contrast(1.05); transform:scale(1.03);
+    transition:filter .5s ease, transform .6s ease;
+  }
+  .floor-tile:hover img{filter:grayscale(0) contrast(1.05); transform:scale(1.08);}
+  .floor-tile::after{
+    content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(11,11,12,.85) 0%, rgba(11,11,12,0) 45%);
+    pointer-events:none;
+  }
+  .badge-icon{
+    position:absolute; top:14px; left:14px; width:26px; height:26px; z-index:2;
+    stroke:var(--accent); fill:none; stroke-width:1.6; opacity:.9;
+  }
+  .floor-cap{position:absolute; left:16px; right:16px; bottom:14px; z-index:2;}
+  .floor-cap span{font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--paper);}
+  @media (max-width:860px){
+    .floor-grid{grid-template-columns:1fr; grid-auto-rows:220px;}
+    .floor-tile.t1, .floor-tile.t2, .floor-tile.t3, .floor-tile.t4, .floor-tile.t5{grid-column:1; grid-row:auto;}
+    .floor-tile.t4{grid-row:span 2;}
+  }
+
+  /* PRICING */
+  .price-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--line);}
+  .price-vat{margin-top:18px; color:var(--ash); font-size:.82rem;}
+  .price-bnpl{font-size:.8rem; color:var(--ash); line-height:1.45; margin-top:-10px;}
+  .bnpl-chips{display:flex; gap:6px; margin-top:8px;}
+  .bnpl-chip{display:inline-flex; align-items:center; height:24px; padding:0 10px; font-family:'Work Sans',sans-serif;
+    font-weight:600; font-size:.78rem; border:1px solid var(--line-strong); background:var(--ink-2); color:var(--paper);}
+  .bnpl-chip img{height:16px; width:auto; display:block;}
+  .bnpl-logo{height:24px; width:auto; display:block;}
+  .esaad-strip{display:flex; align-items:center; gap:18px; margin:-14px 0 28px; padding:12px 18px;
+    border:1px solid var(--line); border-left:3px solid #c3e019; background:var(--ink-2); flex-wrap:wrap;}
+  .esaad-strip img{height:56px; width:auto; flex:none;}
+  .esaad-strip p{flex:1 1 280px; color:#c9c5bb; font-size:.95rem; line-height:1.5;}
+  .esaad-strip b{color:var(--paper); font-weight:600;}
+  .price-card.featured .bnpl-chip{background:var(--ink); border-color:var(--ink); color:var(--paper);}
+  .parking-strip{display:flex; align-items:center; gap:14px; margin:-20px 0 28px; padding:14px 18px;
+    border:1px solid var(--line); border-left:3px solid var(--accent); background:var(--ink-2);}
+  .parking-strip p{color:#c9c5bb; font-size:.95rem; line-height:1.5;}
+  .parking-strip b{color:var(--paper); font-weight:600;}
+  .parking-p{flex:none; width:32px; height:32px; display:grid; place-items:center; background:var(--accent); color:var(--ink);
+    font-family:'Anton',sans-serif; font-size:1.2rem; line-height:1;}
+  .price-bnpl b{color:var(--paper); font-weight:600;}
+  .price-card.featured .price-bnpl{color:rgba(11,11,12,.7);}
+  .price-card.featured .price-bnpl b{color:var(--ink);}
+  .deal-cta{margin-top:40px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+    padding:32px; border:1px solid var(--accent); background:linear-gradient(120deg, rgba(242,193,24,.1), rgba(242,193,24,0) 60%);}
+  .deal-cta h3{font-family:'Anton',sans-serif; text-transform:uppercase; font-size:clamp(1.6rem,3vw,2.2rem); margin-top:10px;}
+  .deal-cta p:not(.label){color:#c9c5bb; margin-top:10px; max-width:46ch; line-height:1.6;}
+  .deal-actions{display:flex; gap:12px; flex-wrap:wrap;}
+  .price-save{color:var(--accent); font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:.78rem;}
+  .price-card.featured .price-save{color:var(--ink);}
+  .price-card{padding:34px 24px; border-left:1px solid var(--line); display:flex; flex-direction:column; gap:22px;}
+  .price-card:first-child{border-left:0;}
+  .price-card.featured{background:var(--accent); color:var(--ink); border-left-color:var(--accent);}
+  .price-tag{font-family:'Oswald',sans-serif; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; background:var(--ink); color:var(--accent); padding:5px 10px; width:fit-content;}
+  .price-card.featured .price-tag{background:var(--ink); color:var(--accent);}
+  .price-card h3{font-family:'Anton',sans-serif; font-size:1.5rem; text-transform:uppercase;}
+  .price-card .tag-sub{color:var(--ash); font-size:.9rem;}
+  .price-card.featured .tag-sub{color:rgba(11,11,12,.65);}
+  .price-amt{display:flex; align-items:baseline; gap:8px; margin-top:auto;}
+  .price-amt small{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.06em;}
+  .price-amt b{font-family:'Anton',sans-serif; font-size:2.4rem;}
+  @media (max-width:1080px) and (min-width:861px){
+    .price-grid{grid-template-columns:repeat(2,1fr);}
+    .price-card:nth-child(3){border-left:0;}
+    .price-card:nth-child(n+3){border-top:1px solid var(--line);}
+  }
+  .price-amt em{font-style:normal; color:var(--ash); font-size:.82rem;}
+  .price-card.featured .price-amt em{color:rgba(11,11,12,.6);}
+  .price-feats{display:flex; flex-direction:column; gap:9px; border-top:1px solid var(--line); padding-top:18px; font-size:.88rem; color:#c9c5bb;}
+  .price-card.featured .price-feats{border-top-color:rgba(11,11,12,.2); color:rgba(11,11,12,.8);}
+  .price-card .btn{margin-top:6px;}
+  .price-card.featured .btn-line{border-color:var(--ink); color:var(--ink);}
+  .price-card.featured .btn-line:hover{background:var(--ink); color:var(--accent);}
+
+  /* CONTACT */
+  .c-row{display:flex; gap:16px; padding-block:20px; border-top:1px solid var(--line);}
+  .c-row:last-of-type{border-bottom:1px solid var(--line);}
+  .c-row svg{width:18px; height:18px; stroke:var(--accent); fill:none; stroke-width:1.6; flex:none; margin-top:2px;}
+  .c-row .label{color:var(--ash); margin-bottom:5px; display:block;}
+  .c-row div p{line-height:1.55;}
+  .directions-btn{margin-top:28px;}
+
+  form{display:flex; flex-direction:column; gap:16px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  input,textarea{
+    background:transparent; border:1px solid var(--line-strong); color:var(--paper);
+    padding:15px 16px; font-family:'Work Sans',sans-serif; font-size:.92rem; width:100%;
+  }
+  input::placeholder, textarea::placeholder{color:var(--ash);}
+  input:focus, textarea:focus{outline:none; border-color:var(--accent);}
+  textarea{min-height:110px; resize:vertical;}
+  .form-note{color:var(--ash); font-size:.8rem; margin-top:-4px;}
+  .form-ok{display:none; align-items:center; gap:10px; color:var(--accent); font-family:'Oswald',sans-serif; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase;}
+  .form-ok svg{width:16px; height:16px; fill:var(--accent);}
+
+  /* FOOTER */
+  footer{padding-block:34px;}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; color:var(--ash); font-size:.82rem;}
+  .foot-row nav{display:flex; gap:22px;}
+  .foot-brand{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .foot-brand img{height:72px; width:auto; display:block;}
+  .foot-row nav a{font-family:'Oswald',sans-serif; font-size:.7rem; letter-spacing:.1em; color:var(--ash);}
+  .foot-row nav a:hover{color:var(--paper);}
+
+  /* REVEAL fallback (generic, JS-driven start state) */
+  .reveal{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{animation:none;}
+  }
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .menu-btn{display:flex;}
+    .grid-2{grid-template-columns:1fr;}
+    .stats-row{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(3){border-left:0;}
+    .price-grid{grid-template-columns:1fr;}
+    .price-card{border-left:0 !important; border-top:1px solid var(--line);}
+    .price-card:first-child{border-top:0;}
+    .form-row{grid-template-columns:1fr;}
+    .floor-head{align-items:flex-start;}
+    .floor-note{text-align:left;}
+  }
+</style>
+</head>
+<body>
+<div id="preloader">
+  <div class="pre-inner">
+    <img class="pre-logo" src="assets/fa-mark.png" alt="">
+    <div class="pre-count" id="preCounter">0</div>
+    <div class="pre-label label">Entering The Floor</div>
+  </div>
+</div>
+<header id="siteHeader">
+  <div class="wrap navbar">
+    <a href="#top" class="brand">
+      <img class="brand-logo" src="assets/fa-mark.png" alt="Fitness Avenue logo">
+      FITNESS <span>AVENUE</span>
+    </a>
+    <nav class="links">
+      <a href="#manifesto">Manifesto</a>
+      <a href="#floor">Training Floor</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#pricing" class="btn btn-fill" style="display:none" id="joinDesktop">Join Now</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="links" id="mobileNav" style="display:none; flex-direction:column; padding:0 20px 22px; gap:18px;">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#floor">Training Floor</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+    <a href="#pricing" class="btn btn-fill" style="width:fit-content;">Join Now</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" style="border-bottom:1px solid var(--line);">
+    <div class="hero-video-bg" aria-hidden="true">
+      <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
+        <source src="assets/hero-montage.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <span class="hero-ghost">02</span>
+    <div class="wrap">
+      <div class="eyebrow label">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
+        Barsha Heights — Dubai &nbsp;·&nbsp; Free Parking for Members
+      </div>
+      <h1 class="display">
+        <span class="mask"><span class="mask-inner">Fitness</span></span>
+        <span class="mask"><span class="mask-inner line2">Avenue</span></span>
+      </h1>
+      <p class="hero-sub">A strength and conditioning floor built for consistency. Modern equipment, flexible memberships, zero ego. Your progress starts here.</p>
+      <div class="hero-ctas">
+        <a href="#pricing" class="btn btn-fill">Start Training</a>
+        <a href="#manifesto" class="btn btn-line">The Manifesto</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Conditioning <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Mobility <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Recovery <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Discipline <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg></span>
+      <span>Conditioning <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Mobility <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Recovery <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Discipline <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg></span>
+    </div>
+  </div>
+
+  <section id="manifesto">
+    <div class="wrap grid-2">
+      <div class="manifesto-copy reveal">
+        <p class="label accent">The Manifesto</p>
+        <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem); margin-top:16px;">
+          <span class="mask"><span class="mask-inner">Built on reps,</span></span>
+          <span class="mask"><span class="mask-inner accent" style="font-style:italic;">not promises.</span></span>
+        </h2>
+        <p>Fitness Avenue is a one-of-a-kind gym in the heart of Barsha Heights. A focused, comfortable environment designed for one thing: showing up.</p>
+      </div>
+      <div class="manifesto-items">
+        <div class="m-item">
+          <span class="num tabnum">01</span>
+          <div>
+            <h3>Show Up</h3>
+            <p>Consistency beats intensity. Every session on the Avenue floor is a vote for the person you're becoming — we just make sure the bar is always racked and the doors open at 6 AM.</p>
+          </div>
+        </div>
+        <div class="m-item">
+          <span class="num tabnum">02</span>
+          <div>
+            <h3>Train With Intent</h3>
+            <p>Modern strength and cardio equipment, a focused floor, and music that moves you. No gimmicks, no waiting around — just deliberate work, rep after rep.</p>
+          </div>
+        </div>
+        <div class="m-item">
+          <span class="num tabnum">03</span>
+          <div>
+            <h3>Recover &amp; Repeat</h3>
+            <p>Progress is built between sessions. Refuel at the club bar, reset, and come back tomorrow. That's the whole secret — and it works.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" style="padding-block:0;">
+    <div class="stats-row">
+      <div class="stat"><b class="tabnum" id="statRating" data-count="4.3">4.3</b><span>Google Rating</span></div>
+      <div class="stat"><b class="tabnum" id="statReviews" data-count="122" data-suffix="+">122+</b><span>Member Reviews</span></div>
+      <div class="stat"><b class="tabnum">6AM</b><span>Doors Open</span></div>
+      <div class="stat"><b class="tabnum">18H</b><span>Daily Access</span></div>
+    </div>
+  </section>
+
+  <section id="floor">
+    <div class="wrap">
+      <div class="floor-head">
+        <div class="reveal">
+          <p class="label accent">Inside The Floor</p>
+          <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem); margin-top:16px;">
+            <span class="mask"><span class="mask-inner">The Avenue,</span></span>
+            <span class="mask"><span class="mask-inner accent" style="font-style:italic;">up close.</span></span>
+          </h2>
+        </div>
+        <p class="floor-note reveal">Hover a station —<br>every rig, every rep.</p>
+      </div>
+    </div>
+    <div class="floor-grid">
+      <div class="floor-tile t1">
+        <img src="assets/strength-floor.webp" alt="The strength floor at Fitness Avenue, with cable machines, dumbbell rack and bench">
+        <svg class="badge-icon" viewBox="0 0 48 48"><rect x="4" y="21" width="6" height="6"/><rect x="10" y="18" width="4" height="12"/><rect x="34" y="18" width="4" height="12"/><rect x="38" y="21" width="6" height="6"/><line x1="14" y1="24" x2="34" y2="24"/></svg>
+        <div class="floor-cap"><span>The Strength Floor</span></div>
+      </div>
+      <div class="floor-tile t2">
+        <img src="assets/cable-rig.webp" alt="Yellow cable and rig stations on the training floor">
+        <svg class="badge-icon" viewBox="0 0 48 48"><rect x="8" y="6" width="4" height="36"/><rect x="36" y="6" width="4" height="36"/><line x1="12" y1="14" x2="36" y2="14"/><line x1="12" y1="24" x2="36" y2="24"/><line x1="12" y1="34" x2="36" y2="34"/></svg>
+        <div class="floor-cap"><span>Cable &amp; Rig Stations</span></div>
+      </div>
+      <div class="floor-tile t3">
+        <img src="assets/no-rest.webp" alt="Cardio machines beneath the Fitness Avenue wall mural reading No Rest is worth anything, except the rest that is earned">
+        <svg class="badge-icon" viewBox="0 0 48 48"><rect x="6" y="30" width="36" height="8"/><line x1="6" y1="22" x2="6" y2="30"/><line x1="42" y1="14" x2="42" y2="30"/><line x1="6" y1="22" x2="42" y2="14"/></svg>
+        <div class="floor-cap"><span>No Rest, Only Earned</span></div>
+      </div>
+      <div class="floor-tile t4">
+        <img src="assets/free-weights.webp" alt="The abdomen area, with ab benches beneath the Athlete Wellness mural">
+        <svg class="badge-icon" viewBox="0 0 48 48"><circle cx="24" cy="20" r="10"/><path d="M18 28 L18 40 M30 28 L30 40 M16 34 L32 34"/></svg>
+        <div class="floor-cap"><span>The Abdomen Area</span></div>
+      </div>
+      <div class="floor-tile t5">
+        <img src="assets/cardio-deck.webp" alt="Row of treadmills and cardio machines on the cardio deck">
+        <svg class="badge-icon" viewBox="0 0 48 48"><rect x="6" y="30" width="36" height="8"/><line x1="6" y1="22" x2="6" y2="30"/><line x1="42" y1="14" x2="42" y2="30"/><line x1="6" y1="22" x2="42" y2="14"/></svg>
+        <div class="floor-cap"><span>The Cardio Deck</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="reveal" style="margin-bottom:48px;">
+        <p class="label accent">Memberships</p>
+        <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem); margin-top:16px;">
+          <span class="mask"><span class="mask-inner">Pick your pace. <span class="accent" style="font-style:italic;">Commit &amp; save.</span></span></span>
+        </h2>
+      </div>
+      <div class="parking-strip">
+        <span class="parking-p" aria-hidden="true">P</span>
+        <p><b>Free parking for all members</b> at Warsan Tower — every membership, every visit.</p>
+      </div>
+      <div class="esaad-strip">
+        <img src="assets/esaad.png" alt="Esaad">
+        <p><b>Esaad card holders welcome.</b> Fitness Avenue proudly serves Esaad members — ask us about Esaad benefits when you join.</p>
+        <a class="btn btn-line" href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%20have%20an%20Esaad%20card%20and%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener">Ask About Esaad</a>
+      </div>
+      <div class="price-grid">
+        <div class="price-card">
+          <span class="price-tag">1 Month</span>
+          <div>
+            <h3>Monthly</h3>
+            <p class="tag-sub">Start training this week.</p>
+          </div>
+          <div class="price-feats">
+            <span>Full access to the training floor</span>
+            <span>Free parking at Warsan Tower</span>
+          </div>
+          <div class="price-amt"><small>AED</small><b class="tabnum">367</b><em>/ month</em></div>
+          <a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20join%20the%20Monthly%20membership%20(AED%20367)." target="_blank" rel="noopener" class="btn btn-line">Join Now</a>
+        </div>
+        <div class="price-card">
+          <span class="price-tag">3 Months</span>
+          <div>
+            <h3>Quarterly</h3>
+            <p class="tag-sub">Build the habit.</p>
+          </div>
+          <div class="price-feats">
+            <span>Full access to the training floor</span>
+            <span>Free parking at Warsan Tower</span>
+            <span>Works out to AED 315 / month</span>
+            <span class="price-save">Save AED 156</span>
+          </div>
+          <div class="price-amt"><small>AED</small><b class="tabnum">945</b><em>/ 3 months</em></div>
+          <div class="price-bnpl"><p>or 4 interest-free payments of <b class="tabnum">AED 236.25</b></p><div class="bnpl-chips"><img class="bnpl-logo" src="assets/tabby.png" alt="Tabby"><img class="bnpl-logo" src="assets/tamara.png" alt="Tamara"></div></div>
+          <a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20join%20the%203-Month%20membership%20(AED%20945)." target="_blank" rel="noopener" class="btn btn-line">Join Now</a>
+        </div>
+        <div class="price-card">
+          <span class="price-tag">6 Months</span>
+          <div>
+            <h3>Half-Year</h3>
+            <p class="tag-sub">See real results.</p>
+          </div>
+          <div class="price-feats">
+            <span>Full access to the training floor</span>
+            <span>Free parking at Warsan Tower</span>
+            <span>Works out to AED 262.50 / month</span>
+            <span class="price-save">Save AED 627</span>
+          </div>
+          <div class="price-amt"><small>AED</small><b class="tabnum">1,575</b><em>/ 6 months</em></div>
+          <div class="price-bnpl"><p>or 4 interest-free payments of <b class="tabnum">AED 393.75</b></p><div class="bnpl-chips"><img class="bnpl-logo" src="assets/tabby.png" alt="Tabby"><img class="bnpl-logo" src="assets/tamara.png" alt="Tamara"></div></div>
+          <a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20join%20the%206-Month%20membership%20(AED%201%2C575)." target="_blank" rel="noopener" class="btn btn-line">Join Now</a>
+        </div>
+        <div class="price-card featured">
+          <span class="price-tag">Best Value</span>
+          <div>
+            <h3>Annual</h3>
+            <p class="tag-sub">A full year on the floor.</p>
+          </div>
+          <div class="price-feats">
+            <span>Full access to the training floor</span>
+            <span>Free parking at Warsan Tower</span>
+            <span>Works out to AED 210 / month</span>
+            <span class="price-save">Save AED 1,884</span>
+          </div>
+          <div class="price-amt"><small>AED</small><b class="tabnum">2,520</b><em>/ year</em></div>
+          <div class="price-bnpl"><p>or 4 interest-free payments of <b class="tabnum">AED 630</b></p><div class="bnpl-chips"><img class="bnpl-logo" src="assets/tabby.png" alt="Tabby"><img class="bnpl-logo" src="assets/tamara.png" alt="Tamara"></div></div>
+          <a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20join%20the%20Annual%20membership%20(AED%202%2C520)." target="_blank" rel="noopener" class="btn btn-line">Join Now</a>
+        </div>
+      </div>
+      <p class="price-vat">All prices are in AED and include 5% VAT. Savings are compared with paying monthly. Tabby and Tamara payments are subject to their approval.</p>
+
+      <div class="deal-cta">
+        <div>
+          <p class="label accent">Better Deals</p>
+          <h3>Want an even better deal?</h3>
+          <p>Talk to us before you sign up. Ask about our current offers and we'll find the right plan for you.</p>
+        </div>
+        <div class="deal-actions">
+          <a class="btn btn-fill" href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20ask%20about%20your%20best%20membership%20deals." target="_blank" rel="noopener">WhatsApp Us</a>
+          <a class="btn btn-line" href="tel:+97142384427">Call +971 4 238 4427</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-bottom:0;">
+    <div class="wrap grid-2">
+      <div>
+        <p class="label accent reveal">Get In Touch</p>
+        <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem); margin-top:16px;">
+          <span class="mask"><span class="mask-inner">Your first rep</span></span>
+          <span class="mask"><span class="mask-inner accent" style="font-style:italic;">starts here.</span></span>
+        </h2>
+
+        <div class="c-row">
+          <svg viewBox="0 0 24 24"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
+          <div><span class="label">Find Us</span><p>1st Floor, Warsan Tower 10, Al Rabee'a 2, Barsha Heights, Dubai</p></div>
+        </div>
+        <div class="c-row">
+          <svg viewBox="0 0 24 24"><path d="M4 5c0-1 1-2 2-2h2l2 5-2 2c1 3 3 5 6 6l2-2 5 2v2c0 1-1 2-2 2C10 20 4 14 4 5z"/></svg>
+          <div><span class="label">Call Us</span><p>+971 4 238 4427</p></div>
+        </div>
+        <div class="c-row">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
+          <div><span class="label">Hours</span><p>Mon–Fri 6AM–12AM · Sat 8AM–10PM · Sun 6AM–10PM</p></div>
+        </div>
+        <div class="c-row">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <div><span class="label">Follow</span><p><a href="https://instagram.com/fitnessavenuedxb" target="_blank" rel="noopener" style="text-decoration:underline; text-underline-offset:3px;">@fitnessavenuedxb</a></p></div>
+        </div>
+        <div class="c-row">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/><path d="M12 3a9 9 0 100 18 8.9 8.9 0 004.5-1.2L21 21l-1.3-4.4A9 9 0 0012 3z"/></svg>
+          <div><span class="label">WhatsApp</span><p><a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20ask%20about%20membership." target="_blank" rel="noopener" style="text-decoration:underline; text-underline-offset:3px;">Chat with us on WhatsApp</a></p></div>
+        </div>
+
+        <a class="btn btn-fill directions-btn" id="directionsBtn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Warsan+Tower+10+Al+Rabee%27a+2+Barsha+Heights+Dubai">Get Directions</a>
+      </div>
+
+      <div class="reveal">
+        <p class="label" style="color:var(--ash); margin-bottom:20px;">Enquiry Form — 24H Response</p>
+        <form id="enquiryForm">
+          <div class="form-row">
+            <input id="fname" name="fname" placeholder="Full name" required>
+            <input id="femail" name="femail" type="email" placeholder="Email address" required>
+          </div>
+          <input id="fphone" name="fphone" placeholder="Phone (optional)">
+          <textarea id="fmsg" name="fmsg" placeholder="Tell us your goal — strength, weight loss, general fitness…" required></textarea>
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+          <p class="form-note">Enquiries are emailed straight to Fitness Avenue — we reply within 24 hours. You can also message us directly on WhatsApp above.</p>
+          <button type="submit" class="btn btn-fill">Send Enquiry
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+          </button>
+          <div class="form-ok" id="formOk">
+            <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+            Thanks — we'll be in touch within 24 hours.
+          </div>
+          <div class="form-note" id="formErr" style="display:none; color:#e07a5f;">
+            Something went wrong sending that — please try again, or message us on WhatsApp instead.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="foot-brand">
+      <img src="assets/fa-logo.png" alt="Fitness Avenue">
+      <span>© 2026 Fitness Avenue. All rights reserved.</span>
+    </div>
+    <nav>
+      <a href="#manifesto">Manifesto</a>
+      <a href="#floor">Training Floor</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  try{
+    /* ---- always-on basics ---- */
+    var header = document.getElementById('siteHeader');
+    var onScroll = function(){ header.classList.toggle('solid', window.scrollY > 40); };
+    onScroll();
+    window.addEventListener('scroll', onScroll, {passive:true});
+
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileNav = document.getElementById('mobileNav');
+    menuBtn.addEventListener('click', function(){
+      var open = mobileNav.style.display === 'flex';
+      mobileNav.style.display = open ? 'none' : 'flex';
+    });
+    Array.prototype.forEach.call(mobileNav.querySelectorAll('a'), function(a){
+      a.addEventListener('click', function(){ mobileNav.style.display = 'none'; });
+    });
+
+    /* ---- get directions: open the native maps app on phones ---- */
+    var directionsBtn = document.getElementById('directionsBtn');
+    if(directionsBtn){
+      var addressQuery = "Warsan Tower 10, Al Rabee'a 2, Barsha Heights, Dubai";
+      var ua = navigator.userAgent || '';
+      var isIOS = /iPad|iPhone|iPod/.test(ua);
+      var isAndroid = /Android/.test(ua);
+      if(isIOS){
+        directionsBtn.href = 'https://maps.apple.com/?q=' + encodeURIComponent(addressQuery);
+      } else if(isAndroid){
+        directionsBtn.href = 'geo:0,0?q=' + encodeURIComponent(addressQuery);
+      }
+      /* desktop keeps the Google Maps web link already in the HTML */
+    }
+
+    /* ---- hero video: pause for reduced-motion users ---- */
+    var heroVideo = document.getElementById('heroVideo');
+    if(heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      heroVideo.removeAttribute('autoplay');
+      heroVideo.pause();
+    }
+
+    /* ---- enquiry form -> Web3Forms (https://web3forms.com) ----
+       Get a free access key at https://web3forms.com (enter your email, no
+       account needed) and paste it below to start receiving real enquiries
+       by email. Until it's set, the form still confirms to the visitor but
+       nothing is actually delivered. */
+    var WEB3FORMS_ACCESS_KEY = 'bba9e79a-57bd-4630-bb7d-15a87072d0cc';
+
+    var form = document.getElementById('enquiryForm');
+    var ok = document.getElementById('formOk');
+    var formErr = document.getElementById('formErr');
+    var submitBtn = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(formErr) formErr.style.display = 'none';
+
+      if(!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY'){
+        console.warn('Fitness Avenue enquiry form: WEB3FORMS_ACCESS_KEY is not set, so this submission was not delivered anywhere.');
+        ok.style.display = 'flex';
+        submitBtn.style.display = 'none';
+        return;
+      }
+
+      var data = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: 'New enquiry — Fitness Avenue website',
+        from_name: 'Fitness Avenue Website',
+        name: form.fname.value,
+        email: form.femail.value,
+        phone: form.fphone.value,
+        message: form.fmsg.value
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '.6';
+
+      fetch('https://api.web3forms.com/submit', {
+        method:'POST',
+        headers:{'Content-Type':'application/json', 'Accept':'application/json'},
+        body: JSON.stringify(data)
+      })
+      .then(function(res){ return res.json(); })
+      .then(function(json){
+        if(json.success){
+          ok.style.display = 'flex';
+          submitBtn.style.display = 'none';
+        } else {
+          throw new Error(json.message || 'Submission failed');
+        }
+      })
+      .catch(function(err){
+        console.warn('Fitness Avenue enquiry form error:', err);
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        if(formErr) formErr.style.display = 'block';
+      });
+    });
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hasGSAP = typeof window.gsap !== 'undefined';
+
+    /* ---- fallback: no GSAP or reduced motion -> everything just visible ---- */
+    if(!hasGSAP || reduceMotion){
+      var pre = document.getElementById('preloader');
+      if(pre) pre.parentNode.removeChild(pre);
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ---- preloader + hero entrance ---- */
+    var preloader = document.getElementById('preloader');
+    var counterEl = document.getElementById('preCounter');
+    var counterObj = {v:0};
+
+    gsap.set('.hero .mask-inner', {yPercent:110});
+    gsap.set('.eyebrow, .hero-sub, .hero-ctas', {opacity:0, y:16});
+
+    var tl = gsap.timeline();
+    tl.to(counterObj, {
+        v:100, duration:1.05, ease:'power2.inOut',
+        onUpdate:function(){ counterEl.textContent = Math.round(counterObj.v); }
+      })
+      .to(preloader, {yPercent:-100, duration:.7, ease:'power4.inOut'}, '-=0.05')
+      .call(function(){ preloader.style.display='none'; })
+      .to('.hero .mask-inner', {yPercent:0, duration:1, ease:'power4.out', stagger:.12}, '-=0.55')
+      .to('.eyebrow', {opacity:1, y:0, duration:.6, ease:'power3.out'}, '-=0.6')
+      .to('.hero-sub', {opacity:1, y:0, duration:.6, ease:'power3.out'}, '-=0.45')
+      .to('.hero-ctas', {opacity:1, y:0, duration:.6, ease:'power3.out'}, '-=0.35');
+
+    /* ---- scroll mask-reveal for every other headline ---- */
+    Array.prototype.forEach.call(document.querySelectorAll('.mask-inner'), function(el){
+      if(el.closest('.hero')) return;
+      gsap.set(el, {yPercent:110});
+      gsap.to(el, {
+        yPercent:0, duration:1, ease:'power4.out',
+        scrollTrigger:{trigger:el, start:'top 88%'}
+      });
+    });
+
+    /* ---- generic single-element reveal ---- */
+    Array.prototype.forEach.call(document.querySelectorAll('.reveal'), function(el){
+      gsap.set(el, {opacity:0, y:20});
+      gsap.to(el, {
+        opacity:1, y:0, duration:.8, ease:'power3.out',
+        scrollTrigger:{trigger:el, start:'top 90%'}
+      });
+    });
+
+    /* ---- staggered group reveals ---- */
+    function batchReveal(selector, scaleIn){
+      var els = gsap.utils.toArray(selector);
+      if(!els.length) return;
+      gsap.set(els, scaleIn ? {opacity:0, y:24, scale:.94} : {opacity:0, y:24});
+      ScrollTrigger.batch(els, {
+        start:'top 90%',
+        onEnter:function(batch){
+          gsap.to(batch, {opacity:1, y:0, scale:1, duration:.7, ease:'power3.out', stagger:.08});
+        }
+      });
+    }
+    batchReveal('.m-item');
+    batchReveal('.stat');
+    batchReveal('.floor-tile', true);
+    batchReveal('.price-card', true);
+    batchReveal('.c-row');
+
+    /* ---- hero depth on scroll ---- */
+    gsap.to('.hero h1, .hero-sub', {
+      yPercent:-8, scale:.94, opacity:.45, ease:'none',
+      scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}
+    });
+
+    /* ---- stat counters ---- */
+    function animateCount(el){
+      if(!el) return;
+      var target = parseFloat(el.getAttribute('data-count'));
+      var decimals = (el.getAttribute('data-count').split('.')[1] || '').length;
+      var suffix = el.getAttribute('data-suffix') || '';
+      var obj = {v:0};
+      el.textContent = (decimals ? (0).toFixed(decimals) : '0') + suffix;
+      ScrollTrigger.create({
+        trigger:el, start:'top 92%',
+        onEnter:function(){
+          gsap.to(obj, {
+            v:target, duration:1.4, ease:'power2.out',
+            onUpdate:function(){
+              el.textContent = (decimals ? obj.v.toFixed(decimals) : Math.round(obj.v)) + suffix;
+            }
+          });
+        }
+      });
+    }
+    animateCount(document.getElementById('statRating'));
+    animateCount(document.getElementById('statReviews'));
+
+    /* ---- self-drawing equipment badge icons ---- */
+    Array.prototype.forEach.call(document.querySelectorAll('.floor-tile .badge-icon'), function(svg){
+      var shapes = svg.querySelectorAll('path, line, rect, circle');
+      Array.prototype.forEach.call(shapes, function(shape){
+        try{
+          var len = shape.getTotalLength ? shape.getTotalLength() : 60;
+          shape.style.strokeDasharray = len;
+          shape.style.strokeDashoffset = len;
+        }catch(e){}
+      });
+      ScrollTrigger.create({
+        trigger:svg, start:'top 92%',
+        onEnter:function(){
+          gsap.to(shapes, {strokeDashoffset:0, duration:1, ease:'power2.out', stagger:.08});
+        }
+      });
+    });
+
+    /* ---- marquee reacts to scroll velocity ---- */
+    var marqueeTrack = document.querySelector('.marquee-track');
+    if(marqueeTrack && marqueeTrack.getAnimations){
+      var anims = marqueeTrack.getAnimations();
+      var anim = anims && anims[0];
+      if(anim){
+        var lastY = window.scrollY, lastT = performance.now();
+        window.addEventListener('scroll', function(){
+          var now = performance.now();
+          var dy = window.scrollY - lastY;
+          var dt = Math.max(now - lastT, 16);
+          var v = Math.min(Math.abs(dy / dt) * 6, 6);
+          anim.playbackRate = 1 + v;
+          lastY = window.scrollY; lastT = now;
+        }, {passive:true});
+        (function decay(){
+          if(anim.playbackRate > 1){ anim.playbackRate += (1 - anim.playbackRate) * 0.05; }
+          requestAnimationFrame(decay);
+        })();
+      }
+    }
+
+    /* ---- magnetic buttons (desktop only, native cursor kept) ---- */
+    if(window.matchMedia('(pointer:fine)').matches){
+      Array.prototype.forEach.call(document.querySelectorAll('.btn, .brand-logo'), function(el){
+        var mx = gsap.quickTo(el, 'x', {duration:.4, ease:'power3'});
+        var my = gsap.quickTo(el, 'y', {duration:.4, ease:'power3'});
+        el.addEventListener('mousemove', function(e){
+          var r = el.getBoundingClientRect();
+          mx((e.clientX - (r.left + r.width/2)) * 0.25);
+          my((e.clientY - (r.top + r.height/2)) * 0.25);
+        });
+        el.addEventListener('mouseleave', function(){ mx(0); my(0); });
+      });
+    }
+
+  }catch(err){ console.warn(err); }
+})();
+</script>
+</body>
+</html>
