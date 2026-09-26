@@ -4,10 +4,50 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Fitness Avenue — a strength and conditioning gym in Barsha Heights, Dubai. Flexible memberships, free parking for members.">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="canonical" href="https://www.fa-gym.com/">
 <link rel="icon" type="image/png" href="assets/fa-mark.png">
-<title>Fitness Avenue</title>
+<title>Fitness Avenue | Gym in Barsha Heights, Dubai</title>
+
+<!-- Link previews (WhatsApp, Instagram, X, iMessage) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fitness Avenue">
+<meta property="og:title" content="Fitness Avenue | Gym in Barsha Heights, Dubai">
+<meta property="og:description" content="Strength and conditioning gym at Warsan Tower 10, Barsha Heights. Memberships from AED 367 a month, free parking for members.">
+<meta property="og:url" content="https://www.fa-gym.com/">
+<meta property="og:image" content="https://www.fa-gym.com/assets/hero-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Google business details -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "Fitness Avenue",
+  "url": "https://www.fa-gym.com/",
+  "image": "https://www.fa-gym.com/assets/hero-poster.jpg",
+  "logo": "https://www.fa-gym.com/assets/fa-logo.png",
+  "telephone": "+97142384427",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1st Floor, Warsan Tower 10, Al Rabee'a 2",
+    "addressLocality": "Barsha Heights, Dubai",
+    "addressCountry": "AE"
+  },
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "06:00", "closes": "23:59"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "22:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "06:00", "closes": "22:00"}
+  ],
+  "sameAs": ["https://instagram.com/fitnessavenuedxb"],
+  "priceRange": "AED 210–367 / month"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap');
 
   :root{
     --ink:#0b0b0c;
@@ -16,25 +56,45 @@
     --ash:#948f86;
     --accent:#f2c118;
     --accent-deep:#b9910a;
+    --paper-2:#c9c5bb;          /* secondary body text on ink */
+    --error:#e07a5f;
     --line:rgba(237,234,226,0.14);
     --line-strong:rgba(237,234,226,0.28);
+    /* motion tokens (Emil Kowalski's curves) */
+    --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out:cubic-bezier(0.77, 0, 0.175, 1);
     color-scheme: dark;
   }
 
   *{box-sizing:border-box;}
-  html{background:var(--ink);}
+  html{background:var(--ink); scroll-behavior:smooth; scroll-padding-top:80px; scrollbar-color:#3a3833 var(--ink);}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
   body{
     background:var(--ink);
     color:var(--paper);
     font-family:'Work Sans', system-ui, sans-serif;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    caret-color:var(--accent);
   }
   img{max-width:100%;}
   h1,h2,h3{margin:0; text-wrap:balance;}
-  p{margin:0;}
+  p{margin:0; text-wrap:pretty;}
   a{color:inherit; text-decoration:none;}
   ::selection{background:var(--accent); color:var(--ink);}
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--ink);}
+  ::-webkit-scrollbar-thumb{background:#3a3833; border:2px solid var(--ink);}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;}
+  .skip-link{position:absolute; left:12px; top:-60px; z-index:1000; background:var(--accent); color:var(--ink); padding:10px 16px;
+    font-family:'Oswald',sans-serif; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; transition:top .2s var(--ease-out);}
+  .skip-link:focus{top:12px;}
+
+  /* Film grain: one fixed layer so the dark surfaces read as printed, not flat */
+  .grain{position:fixed; inset:-50%; z-index:60; pointer-events:none; opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
   .display{font-family:'Anton', 'Arial Narrow', sans-serif; font-weight:400; letter-spacing:.01em; line-height:.92; text-transform:uppercase;}
   .label{font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:.14em; font-size:.72rem; font-weight:500;}
@@ -46,7 +106,7 @@
 
   /* MASK REVEAL LINES */
   .mask{overflow:hidden; display:block;}
-  .mask-inner{display:block; will-change:transform;}
+  .mask-inner{display:block;}
 
   /* PRELOADER */
   #preloader{position:fixed; inset:0; background:var(--ink); z-index:999; display:flex; align-items:center; justify-content:center;}
@@ -61,29 +121,40 @@
     position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
     background:rgba(11,11,12,0);
     border-bottom:1px solid transparent;
-    transition:background .3s ease, border-color .3s ease;
+    transition:background .25s ease, border-color .25s ease;
   }
-  header.solid{background:rgba(11,11,12,.92); backdrop-filter:blur(6px); border-color:var(--line);}
+  header.solid, header.menu-open{background:rgba(11,11,12,.92); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border-color:var(--line);}
   .navbar{display:flex; align-items:center; justify-content:space-between; padding-block:16px;}
   .brand{display:flex; align-items:center; gap:10px; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:.06em; font-size:1rem;}
   .brand-logo{height:34px; width:auto; display:block; flex:none;}
   .brand span{color:var(--accent);}
   nav.links{display:flex; gap:32px;}
-  nav.links a{font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.12em; color:var(--ash); transition:color .2s;}
+  nav.links a{font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.12em; color:var(--ash); transition:color .15s ease;}
   nav.links a:hover{color:var(--paper);}
   .btn{
     display:inline-flex; align-items:center; gap:8px; justify-content:center;
     font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.1em; font-weight:600;
     padding:13px 22px; border:1px solid var(--paper); cursor:pointer; white-space:nowrap;
-    transition:background .2s ease, color .2s ease, border-color .2s ease, box-shadow .3s ease;
+    /* `scale` (not transform) so the press composes with the magnetic pull */
+    transition:background .15s ease, color .15s ease, border-color .15s ease, scale .16s var(--ease-out);
   }
-  .btn:active{transform:scale(.97);}
-  .btn-fill{background:var(--accent); border-color:var(--accent); color:var(--ink); box-shadow:0 0 0 0 rgba(242,193,24,.5);}
-  .btn-fill:hover{background:var(--paper); border-color:var(--paper); box-shadow:0 0 26px 2px rgba(242,193,24,.35);}
+  .btn:active{scale:.97;}
+  .btn-fill{background:var(--accent); border-color:var(--accent); color:var(--ink);}
   .btn-line{border-color:var(--line-strong); color:var(--paper);}
-  .btn-line:hover{border-color:var(--paper);}
-  .menu-btn{display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:6px;}
-  .menu-btn span{width:22px; height:2px; background:var(--paper);}
+  @media (hover:hover) and (pointer:fine){
+    .btn-fill:hover{background:var(--paper); border-color:var(--paper);}
+    .btn-line:hover{border-color:var(--paper);}
+  }
+  .btn[aria-busy="true"]{opacity:.6; pointer-events:none;}
+  .menu-btn{display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:10px; margin-right:-10px;}
+  .menu-btn span{width:22px; height:2px; background:var(--paper); transition:transform .2s var(--ease-out), opacity .15s ease;}
+  .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  #mobileNav{display:none; flex-direction:column; padding:0 20px 22px; gap:18px;}
+  #mobileNav.open{display:flex;}
+  #mobileNav a:not(.btn){font-size:1rem; padding-block:4px;}
+  #mobileNav .btn-fill{color:var(--ink); font-size:.78rem;}
 
   /* HERO */
   .hero{
@@ -112,16 +183,13 @@
         linear-gradient(180deg, rgba(11,11,12,.45) 0%, rgba(11,11,12,.65) 50%, rgba(11,11,12,.95) 100%);
     }
   }
-  .hero-ghost{
-    position:absolute; right:clamp(-40px,4vw,40px); top:clamp(40px,8vw,80px);
-    font-size:clamp(6rem,18vw,14rem); color:transparent; -webkit-text-stroke:1px var(--line-strong);
-    pointer-events:none; user-select:none; z-index:2;
-  }
-  .eyebrow{display:flex; align-items:center; gap:8px; color:var(--accent); margin-bottom:22px; position:relative; z-index:2;}
+  .eyebrow{display:flex; align-items:center; flex-wrap:wrap; column-gap:10px; row-gap:4px; color:var(--accent); margin-bottom:22px; position:relative; z-index:2;}
   .eyebrow svg{width:13px; height:13px;}
+  .eyebrow .sep{color:var(--line-strong);}
+  @media (max-width:520px){ .eyebrow .sep{display:none;} .eyebrow .park{flex-basis:100%; padding-left:21px;} }
   .hero h1{font-size:clamp(3.4rem,10vw,7.2rem); position:relative; z-index:2;}
   .hero h1 .line2{color:var(--accent); font-style:italic; transform:skewX(-6deg);}
-  .hero-sub{max-width:480px; margin-top:26px; color:#c9c5bb; font-size:1.05rem; line-height:1.6; position:relative; z-index:2;}
+  .hero-sub{max-width:480px; margin-top:26px; color:var(--paper-2); font-size:1.05rem; line-height:1.6; position:relative; z-index:2;}
   .hero-ctas{display:flex; gap:14px; margin-top:38px; flex-wrap:wrap; position:relative; z-index:2;}
 
   /* MARQUEE */
@@ -133,7 +201,7 @@
 
   /* MANIFESTO */
   .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,6vw,90px); align-items:start;}
-  .manifesto-copy p{color:#c9c5bb; margin-top:20px; line-height:1.7; max-width:38ch;}
+  .manifesto-copy p{color:var(--paper-2); margin-top:20px; line-height:1.7; max-width:38ch;}
   .manifesto-items{display:flex; flex-direction:column;}
   .m-item{display:grid; grid-template-columns:56px 1fr; gap:22px; padding-block:26px; border-top:1px solid var(--line);}
   .m-item:last-child{border-bottom:1px solid var(--line);}
@@ -166,10 +234,17 @@
   .floor-tile.t4 img{object-position:50% 22%;}
   .floor-tile img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    filter:grayscale(1) contrast(1.05); transform:scale(1.03);
-    transition:filter .5s ease, transform .6s ease;
+    filter:grayscale(1) contrast(1.05); transform:scale(1.02);
+    transition:filter .45s var(--ease-out), transform .6s var(--ease-out);
   }
-  .floor-tile:hover img{filter:grayscale(0) contrast(1.05); transform:scale(1.08);}
+  /* mouse: colour on hover. touch: colour when the tile reaches the middle of the screen (.lit, set in JS) */
+  @media (hover:hover) and (pointer:fine){
+    .floor-tile:hover img{filter:grayscale(0) contrast(1.05); transform:scale(1.05);}
+  }
+  .floor-tile.lit img{filter:grayscale(0) contrast(1.05);}
+  @media (prefers-reduced-motion: reduce){ .floor-tile img{transform:none !important;} }
+  .note-touch{display:none;}
+  @media (hover:none){ .note-mouse{display:none;} .note-touch{display:inline;} }
   .floor-tile::after{
     content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(11,11,12,.85) 0%, rgba(11,11,12,0) 45%);
     pointer-events:none;
@@ -196,14 +271,14 @@
   .bnpl-chip img{height:16px; width:auto; display:block;}
   .bnpl-logo{height:24px; width:auto; display:block;}
   .esaad-strip{display:flex; align-items:center; gap:18px; margin:-14px 0 28px; padding:12px 18px;
-    border:1px solid var(--line); border-left:3px solid #c3e019; background:var(--ink-2); flex-wrap:wrap;}
+    border:1px solid var(--line); background:var(--ink-2); flex-wrap:wrap;}
   .esaad-strip img{height:56px; width:auto; flex:none;}
-  .esaad-strip p{flex:1 1 280px; color:#c9c5bb; font-size:.95rem; line-height:1.5;}
+  .esaad-strip p{flex:1 1 280px; color:var(--paper-2); font-size:.95rem; line-height:1.5;}
   .esaad-strip b{color:var(--paper); font-weight:600;}
   .price-card.featured .bnpl-chip{background:var(--ink); border-color:var(--ink); color:var(--paper);}
   .parking-strip{display:flex; align-items:center; gap:14px; margin:-20px 0 28px; padding:14px 18px;
-    border:1px solid var(--line); border-left:3px solid var(--accent); background:var(--ink-2);}
-  .parking-strip p{color:#c9c5bb; font-size:.95rem; line-height:1.5;}
+    border:1px solid var(--line); background:var(--ink-2);}
+  .parking-strip p{color:var(--paper-2); font-size:.95rem; line-height:1.5;}
   .parking-strip b{color:var(--paper); font-weight:600;}
   .parking-p{flex:none; width:32px; height:32px; display:grid; place-items:center; background:var(--accent); color:var(--ink);
     font-family:'Anton',sans-serif; font-size:1.2rem; line-height:1;}
@@ -212,8 +287,8 @@
   .price-card.featured .price-bnpl b{color:var(--ink);}
   .deal-cta{margin-top:40px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
     padding:32px; border:1px solid var(--accent); background:linear-gradient(120deg, rgba(242,193,24,.1), rgba(242,193,24,0) 60%);}
-  .deal-cta h3{font-family:'Anton',sans-serif; text-transform:uppercase; font-size:clamp(1.6rem,3vw,2.2rem); margin-top:10px;}
-  .deal-cta p:not(.label){color:#c9c5bb; margin-top:10px; max-width:46ch; line-height:1.6;}
+  .deal-cta h3{font-family:'Anton',sans-serif; text-transform:uppercase; font-size:clamp(1.6rem,3vw,2.2rem);}
+  .deal-cta p{color:var(--paper-2); margin-top:10px; max-width:46ch; line-height:1.6;}
   .deal-actions{display:flex; gap:12px; flex-wrap:wrap;}
   .price-save{color:var(--accent); font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:.78rem;}
   .price-card.featured .price-save{color:var(--ink);}
@@ -226,6 +301,16 @@
   .price-card .tag-sub{color:var(--ash); font-size:.9rem;}
   .price-card.featured .tag-sub{color:rgba(11,11,12,.65);}
   .price-amt{display:flex; align-items:baseline; gap:8px; margin-top:auto;}
+  /* Desktop: every card shares one set of rows, so tags, titles, prices,
+     instalment lines and buttons sit on the same lines across all four plans */
+  @media (min-width:1081px){
+    @supports (grid-template-rows: subgrid){
+      .price-grid{grid-template-rows:repeat(6, auto);}
+      .price-card{display:grid; grid-row:span 6; grid-template-rows:subgrid; row-gap:22px;}
+      .price-amt{margin-top:0; align-self:end;}
+      .price-bnpl{margin-top:-10px;}
+    }
+  }
   .price-amt small{font-family:'Oswald',sans-serif; font-size:.75rem; letter-spacing:.06em;}
   .price-amt b{font-family:'Anton',sans-serif; font-size:2.4rem;}
   @media (max-width:1080px) and (min-width:861px){
@@ -235,11 +320,12 @@
   }
   .price-amt em{font-style:normal; color:var(--ash); font-size:.82rem;}
   .price-card.featured .price-amt em{color:rgba(11,11,12,.6);}
-  .price-feats{display:flex; flex-direction:column; gap:9px; border-top:1px solid var(--line); padding-top:18px; font-size:.88rem; color:#c9c5bb;}
+  .price-feats{display:flex; flex-direction:column; gap:9px; border-top:1px solid var(--line); padding-top:18px; font-size:.88rem; color:var(--paper-2);}
   .price-card.featured .price-feats{border-top-color:rgba(11,11,12,.2); color:rgba(11,11,12,.8);}
   .price-card .btn{margin-top:6px;}
   .price-card.featured .btn-line{border-color:var(--ink); color:var(--ink);}
-  .price-card.featured .btn-line:hover{background:var(--ink); color:var(--accent);}
+  @media (hover:hover) and (pointer:fine){ .price-card.featured .btn-line:hover{background:var(--ink); color:var(--accent);} }
+  .price-card.featured .btn:focus-visible{outline-color:var(--ink);}
 
   /* CONTACT */
   .c-row{display:flex; gap:16px; padding-block:20px; border-top:1px solid var(--line);}
@@ -253,12 +339,16 @@
   .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
   input,textarea{
     background:transparent; border:1px solid var(--line-strong); color:var(--paper);
-    padding:15px 16px; font-family:'Work Sans',sans-serif; font-size:.92rem; width:100%;
+    padding:15px 16px; font-family:'Work Sans',sans-serif; font-size:1rem; width:100%; border-radius:0;
+    transition:border-color .15s ease;
   }
   input::placeholder, textarea::placeholder{color:var(--ash);}
   input:focus, textarea:focus{outline:none; border-color:var(--accent);}
+  input:focus-visible, textarea:focus-visible{outline:none; box-shadow:inset 0 0 0 1px var(--accent);}
+  input[aria-invalid="true"], textarea[aria-invalid="true"]{border-color:var(--error);}
   textarea{min-height:110px; resize:vertical;}
   .form-note{color:var(--ash); font-size:.8rem; margin-top:-4px;}
+  .form-err{display:none; color:var(--error); font-size:.85rem; line-height:1.5;}
   .form-ok{display:none; align-items:center; gap:10px; color:var(--accent); font-family:'Oswald',sans-serif; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase;}
   .form-ok svg{width:16px; height:16px; fill:var(--accent);}
 
@@ -293,7 +383,9 @@
 </style>
 </head>
 <body>
-<div id="preloader">
+<a class="skip-link" href="#top">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<div id="preloader" aria-hidden="true">
   <div class="pre-inner">
     <img class="pre-logo" src="assets/fa-mark.png" alt="">
     <div class="pre-count" id="preCounter">0</div>
@@ -312,10 +404,9 @@
       <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#pricing" class="btn btn-fill" style="display:none" id="joinDesktop">Join Now</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
   </div>
-  <nav class="links" id="mobileNav" style="display:none; flex-direction:column; padding:0 20px 22px; gap:18px;">
+  <nav class="links" id="mobileNav" aria-label="Mobile">
     <a href="#manifesto">Manifesto</a>
     <a href="#floor">Training Floor</a>
     <a href="#pricing">Pricing</a>
@@ -324,7 +415,7 @@
   </nav>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
   <section class="hero" style="border-bottom:1px solid var(--line);">
     <div class="hero-video-bg" aria-hidden="true">
       <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
@@ -332,12 +423,11 @@
       </video>
     </div>
     <div class="hero-scrim" aria-hidden="true"></div>
-    <span class="hero-ghost">02</span>
     <div class="wrap">
-      <div class="eyebrow label">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
-        Barsha Heights — Dubai &nbsp;·&nbsp; Free Parking for Members
-      </div>
+      <p class="eyebrow label">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
+        <span>Barsha Heights, Dubai</span><span class="sep" aria-hidden="true">/</span><span class="park">Free Parking for Members</span>
+      </p>
       <h1 class="display">
         <span class="mask"><span class="mask-inner">Fitness</span></span>
         <span class="mask"><span class="mask-inner line2">Avenue</span></span>
@@ -350,7 +440,7 @@
     </div>
   </section>
 
-  <div class="marquee">
+  <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
       <span>Conditioning <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Mobility <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Recovery <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Discipline <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg></span>
       <span>Conditioning <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Mobility <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Recovery <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg> Discipline <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg></span>
@@ -360,8 +450,7 @@
   <section id="manifesto">
     <div class="wrap grid-2">
       <div class="manifesto-copy reveal">
-        <p class="label accent">The Manifesto</p>
-        <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem); margin-top:16px;">
+        <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem);">
           <span class="mask"><span class="mask-inner">Built on reps,</span></span>
           <span class="mask"><span class="mask-inner accent" style="font-style:italic;">not promises.</span></span>
         </h2>
@@ -406,39 +495,38 @@
     <div class="wrap">
       <div class="floor-head">
         <div class="reveal">
-          <p class="label accent">Inside The Floor</p>
-          <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem); margin-top:16px;">
+          <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem);">
             <span class="mask"><span class="mask-inner">The Avenue,</span></span>
             <span class="mask"><span class="mask-inner accent" style="font-style:italic;">up close.</span></span>
           </h2>
         </div>
-        <p class="floor-note reveal">Hover a station —<br>every rig, every rep.</p>
+        <p class="floor-note reveal"><span class="note-mouse">Hover a station —</span><span class="note-touch">Scroll the floor —</span><br>every rig, every rep.</p>
       </div>
     </div>
     <div class="floor-grid">
       <div class="floor-tile t1">
-        <img src="assets/strength-floor.webp" alt="The strength floor at Fitness Avenue, with cable machines, dumbbell rack and bench">
-        <svg class="badge-icon" viewBox="0 0 48 48"><rect x="4" y="21" width="6" height="6"/><rect x="10" y="18" width="4" height="12"/><rect x="34" y="18" width="4" height="12"/><rect x="38" y="21" width="6" height="6"/><line x1="14" y1="24" x2="34" y2="24"/></svg>
+        <img src="assets/strength-floor.webp" alt="The strength floor at Fitness Avenue, with cable machines, dumbbell rack and bench" width="1024" height="768" loading="lazy" decoding="async">
+        <svg class="badge-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="21" width="6" height="6"/><rect x="10" y="18" width="4" height="12"/><rect x="34" y="18" width="4" height="12"/><rect x="38" y="21" width="6" height="6"/><line x1="14" y1="24" x2="34" y2="24"/></svg>
         <div class="floor-cap"><span>The Strength Floor</span></div>
       </div>
       <div class="floor-tile t2">
-        <img src="assets/cable-rig.webp" alt="Yellow cable and rig stations on the training floor">
-        <svg class="badge-icon" viewBox="0 0 48 48"><rect x="8" y="6" width="4" height="36"/><rect x="36" y="6" width="4" height="36"/><line x1="12" y1="14" x2="36" y2="14"/><line x1="12" y1="24" x2="36" y2="24"/><line x1="12" y1="34" x2="36" y2="34"/></svg>
+        <img src="assets/cable-rig.webp" alt="Yellow cable and rig stations on the training floor" width="768" height="1024" loading="lazy" decoding="async">
+        <svg class="badge-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="6" width="4" height="36"/><rect x="36" y="6" width="4" height="36"/><line x1="12" y1="14" x2="36" y2="14"/><line x1="12" y1="24" x2="36" y2="24"/><line x1="12" y1="34" x2="36" y2="34"/></svg>
         <div class="floor-cap"><span>Cable &amp; Rig Stations</span></div>
       </div>
       <div class="floor-tile t3">
-        <img src="assets/no-rest.webp" alt="Cardio machines beneath the Fitness Avenue wall mural reading No Rest is worth anything, except the rest that is earned">
-        <svg class="badge-icon" viewBox="0 0 48 48"><rect x="6" y="30" width="36" height="8"/><line x1="6" y1="22" x2="6" y2="30"/><line x1="42" y1="14" x2="42" y2="30"/><line x1="6" y1="22" x2="42" y2="14"/></svg>
+        <img src="assets/no-rest.webp" alt="Cardio machines beneath the Fitness Avenue wall mural reading No Rest is worth anything, except the rest that is earned" width="1024" height="768" loading="lazy" decoding="async">
+        <svg class="badge-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="30" width="36" height="8"/><line x1="6" y1="22" x2="6" y2="30"/><line x1="42" y1="14" x2="42" y2="30"/><line x1="6" y1="22" x2="42" y2="14"/></svg>
         <div class="floor-cap"><span>No Rest, Only Earned</span></div>
       </div>
       <div class="floor-tile t4">
-        <img src="assets/free-weights.webp" alt="The abdomen area, with ab benches beneath the Athlete Wellness mural">
-        <svg class="badge-icon" viewBox="0 0 48 48"><circle cx="24" cy="20" r="10"/><path d="M18 28 L18 40 M30 28 L30 40 M16 34 L32 34"/></svg>
+        <img src="assets/free-weights.webp" alt="The abdomen area, with ab benches beneath the Athlete Wellness mural" width="1024" height="768" loading="lazy" decoding="async">
+        <svg class="badge-icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="20" r="10"/><path d="M18 28 L18 40 M30 28 L30 40 M16 34 L32 34"/></svg>
         <div class="floor-cap"><span>The Abdomen Area</span></div>
       </div>
       <div class="floor-tile t5">
-        <img src="assets/cardio-deck.webp" alt="Row of treadmills and cardio machines on the cardio deck">
-        <svg class="badge-icon" viewBox="0 0 48 48"><rect x="6" y="30" width="36" height="8"/><line x1="6" y1="22" x2="6" y2="30"/><line x1="42" y1="14" x2="42" y2="30"/><line x1="6" y1="22" x2="42" y2="14"/></svg>
+        <img src="assets/cardio-deck.webp" alt="Row of treadmills and cardio machines on the cardio deck" width="1024" height="768" loading="lazy" decoding="async">
+        <svg class="badge-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="30" width="36" height="8"/><line x1="6" y1="22" x2="6" y2="30"/><line x1="42" y1="14" x2="42" y2="30"/><line x1="6" y1="22" x2="42" y2="14"/></svg>
         <div class="floor-cap"><span>The Cardio Deck</span></div>
       </div>
     </div>
@@ -447,8 +535,7 @@
   <section id="pricing">
     <div class="wrap">
       <div class="reveal" style="margin-bottom:48px;">
-        <p class="label accent">Memberships</p>
-        <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem); margin-top:16px;">
+        <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem);">
           <span class="mask"><span class="mask-inner">Pick your pace. <span class="accent" style="font-style:italic;">Commit &amp; save.</span></span></span>
         </h2>
       </div>
@@ -457,7 +544,7 @@
         <p><b>Free parking for all members</b> at Warsan Tower — every membership, every visit.</p>
       </div>
       <div class="esaad-strip">
-        <img src="assets/esaad.png" alt="Esaad">
+        <img src="assets/esaad.png" alt="Esaad" width="247" height="240" loading="lazy" decoding="async">
         <p><b>Esaad card holders welcome.</b> Fitness Avenue proudly serves Esaad members — ask us about Esaad benefits when you join.</p>
         <a class="btn btn-line" href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%20have%20an%20Esaad%20card%20and%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener">Ask About Esaad</a>
       </div>
@@ -473,6 +560,7 @@
             <span>Free parking at Warsan Tower</span>
           </div>
           <div class="price-amt"><small>AED</small><b class="tabnum">367</b><em>/ month</em></div>
+          <div class="price-bnpl" aria-hidden="true"></div>
           <a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20join%20the%20Monthly%20membership%20(AED%20367)." target="_blank" rel="noopener" class="btn btn-line">Join Now</a>
         </div>
         <div class="price-card">
@@ -488,7 +576,7 @@
             <span class="price-save">Save AED 156</span>
           </div>
           <div class="price-amt"><small>AED</small><b class="tabnum">945</b><em>/ 3 months</em></div>
-          <div class="price-bnpl"><p>or 4 interest-free payments of <b class="tabnum">AED 236.25</b></p><div class="bnpl-chips"><img class="bnpl-logo" src="assets/tabby.png" alt="Tabby"><img class="bnpl-logo" src="assets/tamara.png" alt="Tamara"></div></div>
+          <div class="price-bnpl"><p>or 4 interest-free payments of <b class="tabnum">AED 236.25</b></p><div class="bnpl-chips"><img class="bnpl-logo" src="assets/tabby.png" alt="Tabby" width="189" height="80" loading="lazy" decoding="async"><img class="bnpl-logo" src="assets/tamara.png" alt="Tamara" width="247" height="80" loading="lazy" decoding="async"></div></div>
           <a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20join%20the%203-Month%20membership%20(AED%20945)." target="_blank" rel="noopener" class="btn btn-line">Join Now</a>
         </div>
         <div class="price-card">
@@ -504,7 +592,7 @@
             <span class="price-save">Save AED 627</span>
           </div>
           <div class="price-amt"><small>AED</small><b class="tabnum">1,575</b><em>/ 6 months</em></div>
-          <div class="price-bnpl"><p>or 4 interest-free payments of <b class="tabnum">AED 393.75</b></p><div class="bnpl-chips"><img class="bnpl-logo" src="assets/tabby.png" alt="Tabby"><img class="bnpl-logo" src="assets/tamara.png" alt="Tamara"></div></div>
+          <div class="price-bnpl"><p>or 4 interest-free payments of <b class="tabnum">AED 393.75</b></p><div class="bnpl-chips"><img class="bnpl-logo" src="assets/tabby.png" alt="Tabby" width="189" height="80" loading="lazy" decoding="async"><img class="bnpl-logo" src="assets/tamara.png" alt="Tamara" width="247" height="80" loading="lazy" decoding="async"></div></div>
           <a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20join%20the%206-Month%20membership%20(AED%201%2C575)." target="_blank" rel="noopener" class="btn btn-line">Join Now</a>
         </div>
         <div class="price-card featured">
@@ -520,7 +608,7 @@
             <span class="price-save">Save AED 1,884</span>
           </div>
           <div class="price-amt"><small>AED</small><b class="tabnum">2,520</b><em>/ year</em></div>
-          <div class="price-bnpl"><p>or 4 interest-free payments of <b class="tabnum">AED 630</b></p><div class="bnpl-chips"><img class="bnpl-logo" src="assets/tabby.png" alt="Tabby"><img class="bnpl-logo" src="assets/tamara.png" alt="Tamara"></div></div>
+          <div class="price-bnpl"><p>or 4 interest-free payments of <b class="tabnum">AED 630</b></p><div class="bnpl-chips"><img class="bnpl-logo" src="assets/tabby.png" alt="Tabby" width="189" height="80" loading="lazy" decoding="async"><img class="bnpl-logo" src="assets/tamara.png" alt="Tamara" width="247" height="80" loading="lazy" decoding="async"></div></div>
           <a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20join%20the%20Annual%20membership%20(AED%202%2C520)." target="_blank" rel="noopener" class="btn btn-line">Join Now</a>
         </div>
       </div>
@@ -528,7 +616,6 @@
 
       <div class="deal-cta">
         <div>
-          <p class="label accent">Better Deals</p>
           <h3>Want an even better deal?</h3>
           <p>Talk to us before you sign up. Ask about our current offers and we'll find the right plan for you.</p>
         </div>
@@ -543,30 +630,29 @@
   <section id="contact" style="border-bottom:0;">
     <div class="wrap grid-2">
       <div>
-        <p class="label accent reveal">Get In Touch</p>
-        <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem); margin-top:16px;">
+        <h2 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem); margin-bottom:28px;">
           <span class="mask"><span class="mask-inner">Your first rep</span></span>
           <span class="mask"><span class="mask-inner accent" style="font-style:italic;">starts here.</span></span>
         </h2>
 
         <div class="c-row">
-          <svg viewBox="0 0 24 24"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
           <div><span class="label">Find Us</span><p>1st Floor, Warsan Tower 10, Al Rabee'a 2, Barsha Heights, Dubai</p></div>
         </div>
         <div class="c-row">
-          <svg viewBox="0 0 24 24"><path d="M4 5c0-1 1-2 2-2h2l2 5-2 2c1 3 3 5 6 6l2-2 5 2v2c0 1-1 2-2 2C10 20 4 14 4 5z"/></svg>
-          <div><span class="label">Call Us</span><p>+971 4 238 4427</p></div>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5c0-1 1-2 2-2h2l2 5-2 2c1 3 3 5 6 6l2-2 5 2v2c0 1-1 2-2 2C10 20 4 14 4 5z"/></svg>
+          <div><span class="label">Call Us</span><p><a href="tel:+97142384427" style="text-decoration:underline; text-underline-offset:3px;">+971 4 238 4427</a></p></div>
         </div>
         <div class="c-row">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
           <div><span class="label">Hours</span><p>Mon–Fri 6AM–12AM · Sat 8AM–10PM · Sun 6AM–10PM</p></div>
         </div>
         <div class="c-row">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
           <div><span class="label">Follow</span><p><a href="https://instagram.com/fitnessavenuedxb" target="_blank" rel="noopener" style="text-decoration:underline; text-underline-offset:3px;">@fitnessavenuedxb</a></p></div>
         </div>
         <div class="c-row">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/><path d="M12 3a9 9 0 100 18 8.9 8.9 0 004.5-1.2L21 21l-1.3-4.4A9 9 0 0012 3z"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/><path d="M12 3a9 9 0 100 18 8.9 8.9 0 004.5-1.2L21 21l-1.3-4.4A9 9 0 0012 3z"/></svg>
           <div><span class="label">WhatsApp</span><p><a href="https://wa.me/971509776864?text=Hi%20Fitness%20Avenue%2C%20I%27d%20like%20to%20ask%20about%20membership." target="_blank" rel="noopener" style="text-decoration:underline; text-underline-offset:3px;">Chat with us on WhatsApp</a></p></div>
         </div>
 
@@ -574,26 +660,31 @@
       </div>
 
       <div class="reveal">
-        <p class="label" style="color:var(--ash); margin-bottom:20px;">Enquiry Form — 24H Response</p>
-        <form id="enquiryForm">
+        <p class="label" id="formTitle" style="color:var(--ash); margin-bottom:20px;">Enquiry Form — 24H Response</p>
+        <form id="enquiryForm" aria-labelledby="formTitle" novalidate>
           <div class="form-row">
-            <input id="fname" name="fname" placeholder="Full name" required>
-            <input id="femail" name="femail" type="email" placeholder="Email address" required>
+            <label class="sr-only" for="fname">Full name</label>
+            <input id="fname" name="fname" placeholder="Full name" autocomplete="name" required>
+            <label class="sr-only" for="femail">Email address</label>
+            <input id="femail" name="femail" type="email" placeholder="Email address" autocomplete="email" inputmode="email" required>
           </div>
-          <input id="fphone" name="fphone" placeholder="Phone (optional)">
+          <label class="sr-only" for="fphone">Phone (optional)</label>
+          <input id="fphone" name="fphone" type="tel" placeholder="Phone (optional)" autocomplete="tel" inputmode="tel">
+          <label class="sr-only" for="fmsg">Your goal</label>
           <textarea id="fmsg" name="fmsg" placeholder="Tell us your goal — strength, weight loss, general fitness…" required></textarea>
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+          <p class="form-err" id="formInvalid" role="alert"></p>
           <p class="form-note">Enquiries are emailed straight to Fitness Avenue — we reply within 24 hours. You can also message us directly on WhatsApp above.</p>
-          <button type="submit" class="btn btn-fill">Send Enquiry
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+          <button type="submit" class="btn btn-fill"><span class="btn-text">Send Enquiry</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
           </button>
-          <div class="form-ok" id="formOk">
-            <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+          <div class="form-ok" id="formOk" role="status">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
             Thanks — we'll be in touch within 24 hours.
           </div>
-          <div class="form-note" id="formErr" style="display:none; color:#e07a5f;">
-            Something went wrong sending that — please try again, or message us on WhatsApp instead.
-          </div>
+          <p class="form-err" id="formErr" role="alert">
+            That didn't send. Please try again, or message us on WhatsApp instead.
+          </p>
         </form>
       </div>
     </div>
@@ -603,7 +694,7 @@
 <footer>
   <div class="wrap foot-row">
     <div class="foot-brand">
-      <img src="assets/fa-logo.png" alt="Fitness Avenue">
+      <img src="assets/fa-logo.png" alt="Fitness Avenue" width="520" height="459" loading="lazy" decoding="async">
       <span>© 2026 Fitness Avenue. All rights reserved.</span>
     </div>
     <nav>
@@ -628,13 +719,27 @@
 
     var menuBtn = document.getElementById('menuBtn');
     var mobileNav = document.getElementById('mobileNav');
-    menuBtn.addEventListener('click', function(){
-      var open = mobileNav.style.display === 'flex';
-      mobileNav.style.display = open ? 'none' : 'flex';
-    });
+    function setMenu(open){
+      mobileNav.classList.toggle('open', open);
+      header.classList.toggle('menu-open', open);
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    menuBtn.addEventListener('click', function(){ setMenu(!mobileNav.classList.contains('open')); });
     Array.prototype.forEach.call(mobileNav.querySelectorAll('a'), function(a){
-      a.addEventListener('click', function(){ mobileNav.style.display = 'none'; });
+      a.addEventListener('click', function(){ setMenu(false); });
     });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && mobileNav.classList.contains('open')){ setMenu(false); menuBtn.focus(); }
+    });
+
+    /* ---- training floor on touch screens: tiles turn to colour as they pass the middle of the screen ---- */
+    if(window.matchMedia('(hover:none)').matches && 'IntersectionObserver' in window){
+      var tileIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ en.target.classList.toggle('lit', en.isIntersecting); });
+      }, {rootMargin:'-35% 0px -35% 0px'});
+      Array.prototype.forEach.call(document.querySelectorAll('.floor-tile'), function(t){ tileIO.observe(t); });
+    }
 
     /* ---- get directions: open the native maps app on phones ---- */
     var directionsBtn = document.getElementById('directionsBtn');
@@ -669,9 +774,35 @@
     var ok = document.getElementById('formOk');
     var formErr = document.getElementById('formErr');
     var submitBtn = form.querySelector('button[type="submit"]');
+    var btnText = submitBtn.querySelector('.btn-text');
+    var formInvalid = document.getElementById('formInvalid');
+
+    /* inline validation: say which field needs fixing, instead of the browser's bubble */
+    function checkForm(){
+      var problems = [];
+      [['fname','your name'],['femail','a valid email address'],['fmsg','your goal']].forEach(function(f){
+        var el = form[f[0]];
+        var bad = !el.value.trim() || (el.type === 'email' && !el.checkValidity());
+        el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+        if(bad) problems.push(f[1]);
+      });
+      if(problems.length){
+        formInvalid.textContent = 'Please add ' + problems.join(', ').replace(/, ([^,]*)$/, ' and $1') + '.';
+        formInvalid.style.display = 'block';
+        form.querySelector('[aria-invalid="true"]').focus();
+        return false;
+      }
+      formInvalid.style.display = 'none';
+      return true;
+    }
+    form.addEventListener('input', function(e){
+      if(e.target.getAttribute('aria-invalid') === 'true'){ e.target.setAttribute('aria-invalid','false'); }
+    });
+
     form.addEventListener('submit', function(e){
       e.preventDefault();
       if(formErr) formErr.style.display = 'none';
+      if(!checkForm()) return;
 
       if(!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY'){
         console.warn('Fitness Avenue enquiry form: WEB3FORMS_ACCESS_KEY is not set, so this submission was not delivered anywhere.');
@@ -691,7 +822,8 @@
       };
 
       submitBtn.disabled = true;
-      submitBtn.style.opacity = '.6';
+      submitBtn.setAttribute('aria-busy', 'true');
+      btnText.textContent = 'Sending…';
 
       fetch('https://api.web3forms.com/submit', {
         method:'POST',
@@ -710,7 +842,8 @@
       .catch(function(err){
         console.warn('Fitness Avenue enquiry form error:', err);
         submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
+        submitBtn.removeAttribute('aria-busy');
+        btnText.textContent = 'Send Enquiry';
         if(formErr) formErr.style.display = 'block';
       });
     });
@@ -726,63 +859,74 @@
     }
 
     gsap.registerPlugin(ScrollTrigger);
+    /* Emil Kowalski's curves: strong ease-out for things arriving,
+       strong ease-in-out for things moving across the screen */
+    var EASE_OUT = 'expo.out', EASE_IN_OUT = 'expo.inOut';
 
-    /* ---- preloader + hero entrance ---- */
+    /* ---- preloader: first visit of the session only, and short ----
+       A returning visitor (same tab session) goes straight to the page. */
     var preloader = document.getElementById('preloader');
     var counterEl = document.getElementById('preCounter');
-    var counterObj = {v:0};
+    var seen = false;
+    try{ seen = sessionStorage.getItem('fa-intro') === '1'; sessionStorage.setItem('fa-intro','1'); }catch(e){}
 
     gsap.set('.hero .mask-inner', {yPercent:110});
-    gsap.set('.eyebrow, .hero-sub, .hero-ctas', {opacity:0, y:16});
+    gsap.set('.eyebrow, .hero-sub, .hero-ctas', {opacity:0, y:12});
 
     var tl = gsap.timeline();
-    tl.to(counterObj, {
-        v:100, duration:1.05, ease:'power2.inOut',
-        onUpdate:function(){ counterEl.textContent = Math.round(counterObj.v); }
-      })
-      .to(preloader, {yPercent:-100, duration:.7, ease:'power4.inOut'}, '-=0.05')
-      .call(function(){ preloader.style.display='none'; })
-      .to('.hero .mask-inner', {yPercent:0, duration:1, ease:'power4.out', stagger:.12}, '-=0.55')
-      .to('.eyebrow', {opacity:1, y:0, duration:.6, ease:'power3.out'}, '-=0.6')
-      .to('.hero-sub', {opacity:1, y:0, duration:.6, ease:'power3.out'}, '-=0.45')
-      .to('.hero-ctas', {opacity:1, y:0, duration:.6, ease:'power3.out'}, '-=0.35');
+    if(seen){
+      preloader.parentNode.removeChild(preloader);
+    } else {
+      var counterObj = {v:0};
+      tl.to(counterObj, {
+          v:100, duration:.6, ease:'power2.out',
+          onUpdate:function(){ counterEl.textContent = Math.round(counterObj.v); }
+        })
+        .to(preloader, {yPercent:-100, duration:.55, ease:EASE_IN_OUT}, '+=0.05')
+        .call(function(){ preloader.parentNode && preloader.parentNode.removeChild(preloader); });
+    }
+    /* the one authored moment: the hero headline rises out of its mask */
+    tl.to('.hero .mask-inner', {yPercent:0, duration:.9, ease:EASE_OUT, stagger:.07}, seen ? 0 : '-=0.3')
+      .to('.eyebrow',   {opacity:1, y:0, duration:.5, ease:EASE_OUT}, '<0.1')
+      .to('.hero-sub',  {opacity:1, y:0, duration:.5, ease:EASE_OUT}, '<0.06')
+      .to('.hero-ctas', {opacity:1, y:0, duration:.5, ease:EASE_OUT}, '<0.06');
 
-    /* ---- scroll mask-reveal for every other headline ---- */
+    /* ---- headline mask reveals (the site's signature, kept) ---- */
     Array.prototype.forEach.call(document.querySelectorAll('.mask-inner'), function(el){
       if(el.closest('.hero')) return;
       gsap.set(el, {yPercent:110});
-      gsap.to(el, {
-        yPercent:0, duration:1, ease:'power4.out',
-        scrollTrigger:{trigger:el, start:'top 88%'}
-      });
+      gsap.to(el, {yPercent:0, duration:.9, ease:EASE_OUT, scrollTrigger:{trigger:el, start:'top 88%'}});
     });
 
-    /* ---- generic single-element reveal ---- */
+    /* ---- supporting content: a quiet fade + short rise, not a second show ---- */
     Array.prototype.forEach.call(document.querySelectorAll('.reveal'), function(el){
-      gsap.set(el, {opacity:0, y:20});
-      gsap.to(el, {
-        opacity:1, y:0, duration:.8, ease:'power3.out',
-        scrollTrigger:{trigger:el, start:'top 90%'}
-      });
+      gsap.set(el, {opacity:0, y:12});
+      gsap.to(el, {opacity:1, y:0, duration:.6, ease:EASE_OUT, scrollTrigger:{trigger:el, start:'top 92%'}});
     });
-
-    /* ---- staggered group reveals ---- */
-    function batchReveal(selector, scaleIn){
+    function batchReveal(selector, stagger){
       var els = gsap.utils.toArray(selector);
       if(!els.length) return;
-      gsap.set(els, scaleIn ? {opacity:0, y:24, scale:.94} : {opacity:0, y:24});
+      gsap.set(els, {opacity:0, y:12});
       ScrollTrigger.batch(els, {
-        start:'top 90%',
-        onEnter:function(batch){
-          gsap.to(batch, {opacity:1, y:0, scale:1, duration:.7, ease:'power3.out', stagger:.08});
-        }
+        start:'top 92%', once:true,
+        onEnter:function(batch){ gsap.to(batch, {opacity:1, y:0, duration:.6, ease:EASE_OUT, stagger:stagger || .05}); }
       });
     }
-    batchReveal('.m-item');
-    batchReveal('.stat');
-    batchReveal('.floor-tile', true);
-    batchReveal('.price-card', true);
-    batchReveal('.c-row');
+    batchReveal('.m-item', .06);
+    batchReveal('.stat', .05);
+    batchReveal('.price-card', .06);
+    batchReveal('.c-row', .04);
+
+    /* ---- training floor: photos wipe open from the bottom edge (clip-path, no layout work) ---- */
+    var tiles = gsap.utils.toArray('.floor-tile');
+    gsap.set(tiles, {clipPath:'inset(100% 0% 0% 0%)'});
+    ScrollTrigger.batch(tiles, {
+      start:'top 90%', once:true,
+      onEnter:function(batch){
+        gsap.to(batch, {clipPath:'inset(0% 0% 0% 0%)', duration:.9, ease:EASE_IN_OUT, stagger:.06,
+          onComplete:function(){ batch.forEach(function(t){ t.style.clipPath = ''; }); }});
+      }
+    });
 
     /* ---- hero depth on scroll ---- */
     gsap.to('.hero h1, .hero-sub', {
@@ -790,7 +934,7 @@
       scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}
     });
 
-    /* ---- stat counters ---- */
+    /* ---- stat counters (seen once per visit) ---- */
     function animateCount(el){
       if(!el) return;
       var target = parseFloat(el.getAttribute('data-count'));
@@ -799,13 +943,11 @@
       var obj = {v:0};
       el.textContent = (decimals ? (0).toFixed(decimals) : '0') + suffix;
       ScrollTrigger.create({
-        trigger:el, start:'top 92%',
+        trigger:el, start:'top 92%', once:true,
         onEnter:function(){
           gsap.to(obj, {
-            v:target, duration:1.4, ease:'power2.out',
-            onUpdate:function(){
-              el.textContent = (decimals ? obj.v.toFixed(decimals) : Math.round(obj.v)) + suffix;
-            }
+            v:target, duration:1.1, ease:EASE_OUT,
+            onUpdate:function(){ el.textContent = (decimals ? obj.v.toFixed(decimals) : Math.round(obj.v)) + suffix; }
           });
         }
       });
@@ -824,44 +966,41 @@
         }catch(e){}
       });
       ScrollTrigger.create({
-        trigger:svg, start:'top 92%',
-        onEnter:function(){
-          gsap.to(shapes, {strokeDashoffset:0, duration:1, ease:'power2.out', stagger:.08});
-        }
+        trigger:svg, start:'top 92%', once:true,
+        onEnter:function(){ gsap.to(shapes, {strokeDashoffset:0, duration:.8, ease:EASE_OUT, stagger:.05, delay:.4}); }
       });
     });
 
-    /* ---- marquee reacts to scroll velocity ---- */
+    /* ---- marquee speeds up with scroll, then settles (loop sleeps when idle) ---- */
     var marqueeTrack = document.querySelector('.marquee-track');
     if(marqueeTrack && marqueeTrack.getAnimations){
-      var anims = marqueeTrack.getAnimations();
-      var anim = anims && anims[0];
+      var anim = (marqueeTrack.getAnimations() || [])[0];
       if(anim){
-        var lastY = window.scrollY, lastT = performance.now();
+        var lastY = window.scrollY, lastT = performance.now(), decaying = false;
+        var decay = function(){
+          anim.playbackRate += (1 - anim.playbackRate) * 0.06;
+          if(anim.playbackRate - 1 < 0.01){ anim.playbackRate = 1; decaying = false; return; }
+          requestAnimationFrame(decay);
+        };
         window.addEventListener('scroll', function(){
           var now = performance.now();
-          var dy = window.scrollY - lastY;
-          var dt = Math.max(now - lastT, 16);
-          var v = Math.min(Math.abs(dy / dt) * 6, 6);
-          anim.playbackRate = 1 + v;
+          var v = Math.min(Math.abs((window.scrollY - lastY) / Math.max(now - lastT, 16)) * 6, 6);
+          anim.playbackRate = Math.max(anim.playbackRate, 1 + v);
           lastY = window.scrollY; lastT = now;
+          if(!decaying){ decaying = true; requestAnimationFrame(decay); }
         }, {passive:true});
-        (function decay(){
-          if(anim.playbackRate > 1){ anim.playbackRate += (1 - anim.playbackRate) * 0.05; }
-          requestAnimationFrame(decay);
-        })();
       }
     }
 
-    /* ---- magnetic buttons (desktop only, native cursor kept) ---- */
-    if(window.matchMedia('(pointer:fine)').matches){
-      Array.prototype.forEach.call(document.querySelectorAll('.btn, .brand-logo'), function(el){
-        var mx = gsap.quickTo(el, 'x', {duration:.4, ease:'power3'});
-        var my = gsap.quickTo(el, 'y', {duration:.4, ease:'power3'});
+    /* ---- magnetic pull on the main calls to action only (mouse, native cursor kept) ---- */
+    if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+      Array.prototype.forEach.call(document.querySelectorAll('.hero-ctas .btn, .deal-actions .btn'), function(el){
+        var mx = gsap.quickTo(el, 'x', {duration:.35, ease:'power3'});
+        var my = gsap.quickTo(el, 'y', {duration:.35, ease:'power3'});
         el.addEventListener('mousemove', function(e){
           var r = el.getBoundingClientRect();
-          mx((e.clientX - (r.left + r.width/2)) * 0.25);
-          my((e.clientY - (r.top + r.height/2)) * 0.25);
+          mx((e.clientX - (r.left + r.width/2)) * 0.18);
+          my((e.clientY - (r.top + r.height/2)) * 0.18);
         });
         el.addEventListener('mouseleave', function(){ mx(0); my(0); });
       });

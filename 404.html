@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" type="image/png" href="/assets/fa-mark.png">
+<title>Page not found | Fitness Avenue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600&family=Work+Sans:wght@400&display=swap">
+<style>
+  :root{--ink:#0b0b0c; --paper:#edeae2; --paper-2:#c9c5bb; --ash:#948f86; --accent:#f2c118; --line:rgba(237,234,226,.14); color-scheme:dark;}
+  *{box-sizing:border-box;}
+  html,body{margin:0; background:var(--ink); color:var(--paper);}
+  body{font-family:'Work Sans',system-ui,sans-serif; -webkit-font-smoothing:antialiased; min-height:100dvh; display:flex; flex-direction:column;}
+  ::selection{background:var(--accent); color:var(--ink);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  a{color:inherit; text-decoration:none;}
+  header{padding:18px clamp(20px,4vw,48px); border-bottom:1px solid var(--line);}
+  .brand{display:inline-flex; align-items:center; gap:10px; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:.06em;}
+  .brand img{height:34px; width:auto;}
+  .brand span{color:var(--accent);}
+  main{flex:1; display:flex; align-items:center; padding:clamp(40px,8vw,96px) clamp(20px,4vw,48px);}
+  .inner{max-width:1180px; width:100%; margin:0 auto;}
+  h1{font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; line-height:.92; margin:0;
+     font-size:clamp(3.4rem,10vw,7.2rem);}
+  h1 em{display:block; color:var(--accent); font-style:italic;}
+  p{color:var(--paper-2); max-width:46ch; line-height:1.6; margin:26px 0 0;}
+  .ctas{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px;}
+  .btn{display:inline-flex; align-items:center; font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.1em; font-weight:600;
+       text-transform:uppercase; padding:13px 22px; border:1px solid var(--accent); transition:background .15s ease, color .15s ease, border-color .15s ease, scale .16s cubic-bezier(.23,1,.32,1);}
+  .btn:active{scale:.97;}
+  .fill{background:var(--accent); color:var(--ink);}
+  .line{border-color:rgba(237,234,226,.28);}
+  @media (hover:hover) and (pointer:fine){ .fill:hover{background:var(--paper); border-color:var(--paper);} .line:hover{border-color:var(--paper);} }
+</style>
+</head>
+<body>
+<header><a class="brand" href="/"><img src="/assets/fa-mark.png" alt="" width="209" height="160">FITNESS <span>AVENUE</span></a></header>
+<main>
+  <div class="inner">
+    <h1>Wrong turn.<em>Back to the floor.</em></h1>
+    <p>This page doesn't exist. Head back to the home page to see memberships, the training floor and how to find us at Warsan Tower 10.</p>
+    <div class="ctas">
+      <a class="btn fill" href="/">Back to home</a>
+      <a class="btn line" href="/#pricing">See memberships</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>
